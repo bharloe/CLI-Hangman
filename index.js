@@ -22,8 +22,6 @@ function createMovieArray() {
   }
 }
 
-
-
 function play() {
   inquirer
     .prompt([
@@ -39,10 +37,9 @@ function play() {
           var index = movieArr.indexOf(response.letter);
           movieArr.splice(index, 1);
         } while (movieArr.indexOf(response.letter) > -1);
-        console.log(movieArr.length);
 
         if (movieArr.length === 0) {
-          console.log("You Win!");
+          nextWord();
           return;
         }
 
@@ -88,4 +85,20 @@ function hangmanGen(movie, guesses) {
   }
 
   return result;
+}
+
+function nextWord() {
+  console.log("\n==============");
+  console.log("   You Win!   ");
+  console.log("==============");
+
+  movie = movieGen.randomMovie();
+  hangman = hangmanGen(movie, ".");
+  console.log("\n" + hangman + "\n");
+
+  guesses = [];
+  movieArr = [];
+  createMovieArray();
+
+  play();
 }
