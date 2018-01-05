@@ -1,9 +1,9 @@
 function MovieGen() {
     this.moviesArray = [
-        "Interstellar",
-        "Cloud Atlas",
-        "2001 A Space Odyssey",
-        "Blade Runner 2049"
+         "Interstellar"
+    //     "Cloud Atlas",
+    //     "2001 A Space Odyssey",
+    //     "Blade Runner 2049"
     ];
 
     this.randomMovie = function() {

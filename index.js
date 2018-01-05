@@ -3,53 +3,65 @@ var Movies = require("./js/movies");
 
 var movieGen = new Movies();
 var movie = movieGen.randomMovie();
-// var hangman = hangmanGen(movie, letter);
 
-// play();
+var hangman = hangmanGen(movie, ".");
+console.log("\n" + hangman + "\n");
+
+var guesses = [];
+
+play();
 
 function play() {
-  console.log(movie);
   inquirer
     .prompt([
       {
         type: "input",
         name: "letter",
-        message: "Guess a letter!\n" + hangman
+        message: "Guess a letter!\n"
       }
     ])
     .then(function(response) {
       if (movie.includes(response.letter)) {
-        console.log("letter is in the word");
+        guesses.push(response.letter);
+        hangman = hangmanGen(movie, guesses);
+
+        console.log(hangman + "\n");
+        console.log("              ");
+        console.log("   Correct!   ");
+        play();
       } else {
-        console.log("Wrong :(");
+        console.log(hangman + "\n");
+        console.log("   Wrong :(   ");
+
         play();
       }
     });
 }
 
-function hangmanGen(movie, letter) {
-  var result = [];
-
+function hangmanGen(movie, guesses) {
+  var resultArr = [];
+  var result = "";
+  
   for (var i = 0; i < movie.length; i++) {
     if (movie[i] === " ") {
-      result.push("_")
+      resultArr.push("    ");
     } else {
-      result.push(" _ ");
+      resultArr.push(" _ ");
     }
   }
 
-  // for (var i = 0; i < movie.length; i++) {
-  //   if (movie[i] === letter) {
-  //   } else if (movie[i] === " ") {
-  //   } else {
-  //     stringFront = movie.slice(0, i);
-  //     stringBack = movie.slice(i + 1, movie.length);
-  //     movie = stringFront + "_" + stringBack;
-  //   }
-  // }
+  for (var a = 0; a < guesses.length; a++) {
+    for (var i = 0; i < movie.length; i++) {
+      if (movie[i] === guesses[a]) {
+        resultArr[i] = " " + guesses[a] + " ";
+      }
+    }
+  }
 
-  console.log(result);
+  for (var i = 0; i < resultArr.length; i++) {
+    result += resultArr[i];
+  }
+
   return result;
 }
 
-hangmanGen(movie, "l");
