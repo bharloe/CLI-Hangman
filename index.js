@@ -3,20 +3,18 @@ var Movies = require("./js/movies");
 
 var movieGen = new Movies();
 var movie = movieGen.randomMovie();
-var hangman = hangmanGen(movie, letter);
+// var hangman = hangmanGen(movie, letter);
 
-play();
+// play();
 
 function play() {
   console.log(movie);
-  ;
-
   inquirer
     .prompt([
       {
         type: "input",
         name: "letter",
-        message: "Guess a letter!\n"+hangman
+        message: "Guess a letter!\n" + hangman
       }
     ])
     .then(function(response) {
@@ -26,17 +24,27 @@ function play() {
         console.log("Wrong :(");
         play();
       }
-
-
-      
     });
 }
 
 function hangmanGen(movie, letter) {
-  var gameString = movie;
-  if (gameString[i] === letter) {
-    
+  var result = movie;
+
+  for (var i = 0; i < movie.length; i++) {
+
+    if (movie[i] === letter) {
+     
+    } else if (movie[i] === " ") {
+     
+    } else {
+      stringFront = movie.slice(0, i);
+      stringBack = movie.slice(i+1, movie.length);
+      movie = stringFront+"_"+stringBack;
+    }
   }
 
+  console.log(movie);
+  return;
 }
 
+hangmanGen(movie, "l");

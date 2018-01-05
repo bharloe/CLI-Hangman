@@ -2,7 +2,7 @@ function MovieGen() {
     this.moviesArray = [
         "Interstellar",
         "Cloud Atlas",
-        "2001: A Space Odyssey",
+        "2001 A Space Odyssey",
         "Blade Runner 2049"
     ];
 
