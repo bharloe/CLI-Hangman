@@ -28,23 +28,28 @@ function play() {
 }
 
 function hangmanGen(movie, letter) {
-  var result = movie;
+  var result = [];
 
   for (var i = 0; i < movie.length; i++) {
-
-    if (movie[i] === letter) {
-     
-    } else if (movie[i] === " ") {
-     
+    if (movie[i] === " ") {
+      result.push("_")
     } else {
-      stringFront = movie.slice(0, i);
-      stringBack = movie.slice(i+1, movie.length);
-      movie = stringFront+"_"+stringBack;
+      result.push(" _ ");
     }
   }
 
-  console.log(movie);
-  return;
+  // for (var i = 0; i < movie.length; i++) {
+  //   if (movie[i] === letter) {
+  //   } else if (movie[i] === " ") {
+  //   } else {
+  //     stringFront = movie.slice(0, i);
+  //     stringBack = movie.slice(i + 1, movie.length);
+  //     movie = stringFront + "_" + stringBack;
+  //   }
+  // }
+
+  console.log(result);
+  return result;
 }
 
 hangmanGen(movie, "l");
